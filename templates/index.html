@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Sales Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{url_for('static', filename='style.css')}}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="container fluid p-4">
+        
+        <!-- Page Header -->
+        <div class='row mb-4'>
+            <div class='col text-center'>
+                <h1>Amazon Sales Dashboard</h1>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col md-3">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Products</h5>
+                        <p class="card-text fs-3" id="totalProducts">0</p>
+                    </div>
+                </div> 
+            </div>
+
+        <div class="col md-3">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Average Rating</h5>
+                    <p class="card-text fs-3" id="averageRating">0.0</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col md-3">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Total Reviews</h5>
+                    <p class="card-text fs-3" id="totalReviews">0</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col md-3">
+            <div class="card text-white bg-danger mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Discounted Products</h5>
+                    <p class="card-text fs-3" id="discountedProducts">0</p>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-header">Top Rated Products</div>
+                <div class="card-body">
+                    <canvas id="topRatedChart" height="150"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-header">Most Reviewed Products</div>
+                <div class="card-body">
+                    <canvas id="mostReviewedChart" height="150"></canvas>
+            </div>
+            </div>
+        </div>
+
+    </div>
+        <div class="row-mb-4">
+            <div class="col">
+            <div class="card">
+                <div class="card-header">Discounted Products</div>
+                <div class="card-body">
+                    <canvas id="discountedChart" height="150"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-mb-4">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">Filter Products</div>
+                <div class="card-body">
+                    <form id="filterForm" class="row g-3 mb-3"><div class="col-md-3">
+                            <input type="text" id="category" class="form-control" placeholder="Category">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="number" id="minPrice" class="form-control" placeholder="Min Price">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="number" id="maxPrice" class="form-control" placeholder="Max Price">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="number" id="minRating" class="form-control" placeholder="Min Rating">
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary w-100">Apply Filter</button>
+                        </div>
+                    </form>
+                </div>
+                <table class="table table-striped" id="filteredProductsTable">
+                    <tbody id="filteredProductsBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{url_for('static', filename='script.js')}}"></script>
+</body>
+</html>
