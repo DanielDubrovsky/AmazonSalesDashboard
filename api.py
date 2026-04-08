@@ -90,10 +90,23 @@ def similar_products(product_id):
 
 @app.route('/products/total_products')
 def total_products():
-    data = multi_query.total_products()
+    data = multi_query.get_total_products()
     return jsonify(data)
 
+@app.route('/products/avg_rating')
+def avg_rating():
+    data = multi_query.get_avg_rating()
+    return jsonify(data)
 
+@app.route('/products/total_discounted')
+def avg_discount():
+    data = multi_query.get_total_discounted_products()
+    return jsonify(data)
+
+@app.route('/products/total_reviews')
+def total_ratings():
+    data = multi_query.get_total_reviews()
+    return jsonify(data)
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -185,11 +185,18 @@ def get_avg_rating():
     conn.close()
     return result['avg_rating'] if result else None
 
-def get_avg_discount():
+def get_total_discounted_products():
     conn = get_connection()
     cursor = conn.cursor()
-    query = 'SELECT AVG(discount_percentage) as avg_discount FROM products'
+    query = 'SELECT COUNT(*) as total FROM products WHERE discount_percentage > 0'
     result = cursor.execute(query).fetchone()
     conn.close()
-    return result['avg_discount'] if result else None
+    return result['total'] if result else 0
 
+def get_total_reviews():
+    conn = get_connection()
+    cursor = conn.cursor()
+    query = 'SELECT SUM(rating_count) as total FROM products'
+    result = cursor.execute(query).fetchone()
+    conn.close()
+    return result['total'] if result else 0

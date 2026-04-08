@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
+    loadTotalProducts();
+    loadAverageRating();
+    loadTotalDiscountedProducts();
+    loadTotalReviews();
     loadTopRated();
     loadMostReviewed();
     loadDiscounted();
@@ -10,22 +14,33 @@ function loadTotalProducts() {
     fetch('/products/total_products')
         .then(res => res.json())
         .then(data => {
-            const totalProductsElement = data.map(p => p.total)[0]; // Assuming the API returns an array with a single object containing the total
-            document.getElementById('totalProducts').textContent = `Total Products: ${totalProductsElement}`;
+            document.getElementById('totalProducts').textContent = data.toLocaleString();
         }).catch(err => console.error('Error loading total products:', err));
 
 }
 
 function loadAverageRating() {
-    pass; // Need to implement loading the top average rating products using a query in multi_query.py
-}
-
-function loadTotalReviews() {
-    pass; // Need to implement loading the top products by total reviews using a query in multi_query.py
+    fetch('/products/avg_rating')
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById('averageRating').textContent = data.toFixed(2);
+        }).catch(err => console.error('Error loading average rating:', err));
 }
 
 function loadTotalDiscountedProducts() {
-    pass; // Need to implement loading the top discounted products using a query in multi_query.py
+    fetch('/products/total_discounted')
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById('discountedProducts').textContent = data.toLocaleString();
+        }).catch(err => console.error('Error loading total discounted products:', err));
+}
+
+function loadTotalReviews() {
+    fetch('/products/total_reviews')
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById('totalReviews').textContent = data.toLocaleString();
+        }).catch(err => console.error('Error loading total reviews:', err));
 }
 
 
