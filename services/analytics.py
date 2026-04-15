@@ -1,5 +1,7 @@
 import sqlite3
 
+from matplotlib import category
+
 def get_connection():
     conn = sqlite3.connect('amazon.db')
     conn.row_factory = sqlite3.Row
@@ -10,9 +12,9 @@ def get_top_rated_products(min_reviews=50, limit=10):
     cursor = conn.cursor()
     query = '''
     SELECT product_name, rating, rating_count
-    from products
+    FROM products
     WHERE rating_count >= ?
-    ORDER BY rating DESC, rating_count DESC
+    ORDER BY rating DESC
     LIMIT ?
     '''
 
@@ -114,8 +116,8 @@ def filtered_products(category=None, min_price=None, max_price=None, min_rating=
     params = []
 
     if category:
-        query += ' AND category = ?'
-        params.append(category)
+        query += ' AND category LIKE ?'
+        params.append(f'%|{category}%')
 
     if min_price is not None:
         query += ' AND actual_price >= ?'
