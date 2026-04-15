@@ -95,3 +95,8 @@ def filtered_products():
         'success': True,
         'filtered_products': results
     })
+    
+@products_bp.route('/categories')
+def categories():
+    data = analytics.get_categories()
+    return jsonify(data)

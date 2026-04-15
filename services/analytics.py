@@ -116,7 +116,7 @@ def filtered_products(category=None, min_price=None, max_price=None, min_rating=
     params = []
 
     if category:
-        query += ' AND category LIKE ?'
+        query += ' AND category = ?'
         params.append(f'%|{category}%')
 
     if min_price is not None:
@@ -202,3 +202,11 @@ def get_total_reviews():
     result = cursor.execute(query).fetchone()
     conn.close()
     return result['total'] if result else 0
+
+def get_categories():
+    conn = get_connection()
+    cursor = conn.cursor()
+    query = 'SELECT DISTINCT category FROM products'
+    results = cursor.execute(query).fetchall()
+    conn.close()
+    return [row['category'] for row in results if row['category']]

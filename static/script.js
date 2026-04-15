@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadMostReviewed();
     loadDiscounted();
     setupFilterForm();
+    loadCategories();
     // You can also call other load functions here for discounted, most reviewed, etc.
 });
 
@@ -160,5 +161,22 @@ function setupFilterForm() {
                 });
             })
             .catch(err => console.error(err));
+    });
+
+}
+
+function loadCategories() {
+        fetch('/products/categories')
+            .then(res => res.json())
+            .then(data => {
+                const categorySelect = document.getElementById('category');
+
+                data.forEach(cat => {
+                    const option = document.createElement('option');
+                    option.value = cat;
+                    option.textContent = cat;
+                    categorySelect.appendChild(option);
+
+            });
     });
 }
