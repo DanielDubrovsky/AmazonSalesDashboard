@@ -142,7 +142,7 @@ function setupFilterForm() {
         const maxPrice = document.getElementById('maxPrice').value;
         const minRating = document.getElementById('minRating').value;
 
-        const url = `/products/filtered-products?category=${category}&min_price=${minPrice}&max_price=${maxPrice}&min_rating=${minRating}`;
+        const url = `/products/filtered-products?category=${encodeURIComponent(category)}&min_price=${minPrice}&max_price=${maxPrice}&min_rating=${minRating}`;
 
         fetch(url)
             .then(res => res.json())

@@ -115,9 +115,10 @@ def filtered_products(category=None, min_price=None, max_price=None, min_rating=
     query = '''SELECT product_name, actual_price, rating FROM products WHERE 1=1'''
     params = []
 
+    print(category)
     if category:
-        query += ' AND category = ?'
-        params.append(f'%|{category}%')
+        query += " AND category LIKE ?"
+        params.append(f"%{category}%")
 
     if min_price is not None:
         query += ' AND actual_price >= ?'
