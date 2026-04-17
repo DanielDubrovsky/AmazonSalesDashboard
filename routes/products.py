@@ -100,3 +100,14 @@ def filtered_products():
 def categories():
     data = analytics.get_categories()
     return jsonify(data)
+
+@products_bp.route('/search-products')
+def search_products():
+    keyword = request.args.get('q', '')
+
+    data = analytics.search_products(keyword, limit=20)
+
+    return jsonify({
+        'success': True,
+        'results': data
+    })

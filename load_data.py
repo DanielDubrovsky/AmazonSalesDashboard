@@ -11,10 +11,11 @@ def clean_numeric(col, is_percentage=False):
     cleaned = df[col].astype(str).str.replace(r'[^0-9.]', '', regex=True)
     return pd.to_numeric(cleaned, errors='coerce')
 
+
 numeric_cols = ['discounted_price', 'actual_price', 'discount_percentage', 'rating_count', 'rating']
 
-df['discounted_price'] = clean_numeric('discounted_price')
-df['actual_price'] = clean_numeric('actual_price')
+df['discounted_price'] = clean_numeric('discounted_price') / 100
+df['actual_price'] = clean_numeric('actual_price') / 100
 df['discount_percentage'] = clean_numeric('discount_percentage', is_percentage=True)
 df['rating_count'] = clean_numeric('rating_count')
 df['rating'] = clean_numeric('rating')

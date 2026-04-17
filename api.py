@@ -1,6 +1,6 @@
 from flask import Flask, render_template, render_template, request, jsonify, send_from_directory
 from routes.products import products_bp
-from services import analytics as multi_query
+
 
 app = Flask(__name__)
 app.register_blueprint(products_bp, url_prefix='/products')

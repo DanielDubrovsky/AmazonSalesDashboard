@@ -11,6 +11,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // You can also call other load functions here for discounted, most reviewed, etc.
 });
 
+document.getElementById('searchBox').addEventListener('input', (e) => {
+    const query = e.target.value;
+
+    if (query.length < 2) return;
+
+    fetch (`/products/search-products?q=${encodeURIComponent(query)}`)
+        .then(res => res.json())
+        .then(data => {
+            renderSearchResults(data.results);
+        });
+});
+
+function renderSearchResults(products) {
+    const tbody = document.getElementById('filteredProductsBody');
+    tbody.innerHTML = '';
+
+    products.forEach(p => {
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+        <td>${p.product_name}</td>
+        <td>$${p.actual_price.toFixed(2)}</td>
+        <td>${p.rating.toFixed(2)}</td>
+        `;
+
+        //row.onclick = () => loadProductDetails(p);
+
+        tbody.appendChild(row);
+    })
+}
+
 function loadTotalProducts() {
     fetch('/products/total-products')
         .then(res => res.json())

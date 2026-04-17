@@ -18,6 +18,63 @@
                 <h1>Amazon Sales Dashboard</h1>
             </div>
         </div>
+        <div class="card mb-3">
+            <div class="card-body">
+                <input id="searchBox" class="form-control" placeholder="Search Products...">
+            </div>
+        </div>
+        <div class="row mb-4">
+    
+    <div class="col">
+        <div class="card">
+            <div class="card-header">Filter Products</div>
+
+            <div class="card-body">
+                <form id="filterForm" class="row g-3">
+
+                    <div class="col-md-3">
+                        <select id="category" class="form-select">
+                            <option value="">All Categories</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <input type="number" id="minPrice" class="form-control" placeholder="Min Price">
+                    </div>
+
+                    <div class="col-md-2">
+                        <input type="number" id="maxPrice" class="form-control" placeholder="Max Price">
+                    </div>
+
+                    <div class="col-md-2">
+                        <input type="number" id="minRating" class="form-control" placeholder="Min Rating">
+                    </div>
+
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-primary w-100">
+                            Apply Filter
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody id="filteredProductsBody"></tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
 
         <div class="row mb-4">
             <div class="col md-3">
@@ -90,56 +147,7 @@
         </div>
     </div>
 
-    <div class="row mb-4">
-    <div class="col">
-        <div class="card">
-            <div class="card-header">Filter Products</div>
-
-            <div class="card-body">
-                <form id="filterForm" class="row g-3">
-
-                    <div class="col-md-3">
-                        <select id="category" class="form-select">
-                            <option value="">All Categories</option>
-                        </select>
-                    </div>
-
-                    <div class="col-md-2">
-                        <input type="number" id="minPrice" class="form-control" placeholder="Min Price">
-                    </div>
-
-                    <div class="col-md-2">
-                        <input type="number" id="maxPrice" class="form-control" placeholder="Max Price">
-                    </div>
-
-                    <div class="col-md-2">
-                        <input type="number" id="minRating" class="form-control" placeholder="Min Rating">
-                    </div>
-
-                    <div class="col-md-3">
-                        <button type="submit" class="btn btn-primary w-100">
-                            Apply Filter
-                        </button>
-                    </div>
-
-                </form>
-            </div>
-
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Product</th>
-                            <th>Price</th>
-                            <th>Rating</th>
-                        </tr>
-                    </thead>
-                    <tbody id="filteredProductsBody"></tbody>
-                </table>
-            </div>
-
-        </div>
-    </div>
+    
 </div>
 
     <script src="{{url_for('static', filename='script.js')}}"></script>
